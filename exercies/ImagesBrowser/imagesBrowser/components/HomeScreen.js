@@ -19,7 +19,6 @@ export default class App extends React.Component {
     updateSearch = search => {
         this.setState({ search: search, isLoading: true });
         const url = `https://pixabay.com/api/?key=16010070-61ae78d69d027ee701c67fec8&q=${search}&image_type=photo&pretty=true`;
-        console.log(url);
         fetch(url)
             .then(response => response.json())
             .then(json => {
