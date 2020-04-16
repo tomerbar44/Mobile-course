@@ -8,8 +8,7 @@ export default function GridItem({ navigation, imgObj }) {
                 navigation.navigate('BigImgScreen', {
                     imgObj: imgObj
                 });
-            }}
-            style={styles.touch}>
+            }}>
             <Image style={styles.gridImg} source={{ uri: imgObj.previewURL }} />
         </TouchableOpacity>
     );
