@@ -1,2 +1,2 @@
 # Mobile-course
-react native course 
+React native course 
