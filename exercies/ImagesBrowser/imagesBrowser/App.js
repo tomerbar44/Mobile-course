@@ -2,10 +2,10 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Icon } from 'react-native-elements'
-import HomeScreen from './components/HomeScreen'
-import BigImgScreen from './components/BigImgScreen'
-import FavoriteScreen from './components/FavoriteScreen'
+import { Icon } from 'react-native-elements';
+import HomeScreen from './components/HomeScreen';
+import BigImgScreen from './components/BigImgScreen';
+import FavoriteScreen from './components/FavoriteScreen';
 
 const Stack = createStackNavigator();
 function App() {

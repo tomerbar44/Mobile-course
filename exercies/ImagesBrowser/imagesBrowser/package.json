@@ -37,5 +37,15 @@
     "eslint-plugin-react-native": "^3.8.1",
     "prettier": "^2.0.4"
   },
-  "private": true
+  "private": true,
+  "checkSubmission": {
+    "ex": "1",
+    "students": [
+      { "id": "305171159", "fullName": "Tomer Bar", "email": "tomerbar44@gmail.com" }
+    ],
+    "os": "Windows",
+    "device": "iOS",
+    "submissionDate": "16/04/2020",
+    "delay": false
+  }
 }

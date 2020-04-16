@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Image, AsyncStorage } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 export default class BigImgScreen extends React.Component {
     constructor() {
@@ -13,7 +13,7 @@ export default class BigImgScreen extends React.Component {
         try {
             const value = await AsyncStorage.getItem(this.props.route.params.imgObj.id.toString());
             if (value !== null) {
-                this.setState({ isInFavorite: true })
+                this.setState({ isInFavorite: true });
             }
         } catch (error) {
             console.error(error);
@@ -22,7 +22,7 @@ export default class BigImgScreen extends React.Component {
     storeData = async () => {
         try {
             await AsyncStorage.setItem(this.props.route.params.imgObj.id.toString(), JSON.stringify(this.props.route.params.imgObj));
-            this.setState({ isInFavorite: true })
+            this.setState({ isInFavorite: true });
         } catch (error) {
             console.error(error);
         }

@@ -22,7 +22,7 @@ export default class App extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then(json => {
-                this.setState({ isLoading: false, images: json.hits })
+                this.setState({ isLoading: false, images: json.hits });
             }).catch((error) => {
                 console.error(error);
             });
