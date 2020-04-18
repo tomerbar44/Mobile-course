@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { FlatList, StyleSheet, Text, View, ActivityIndicator, Button } from 'react-native'
 import { SearchBar } from 'react-native-elements'
-import GridItem from './GridItem'
-import ListItem from './ListItem'
+import ImageItem from './ImageItem'
+import PropTypes from 'prop-types'
 
-export default class App extends React.Component {
+class HomeScreen extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -36,8 +36,8 @@ export default class App extends React.Component {
           onChangeText={this.updateSearch}
           value={this.state.search}
           lightTheme
-          containerStyle={{ backgroundColor: '#DCDDDD' }}
-          inputContainerStyle={{ backgroundColor: '#FFFFFF' }}
+          containerStyle={styles.searchBarContainer}
+          inputContainerStyle={styles.searchBarInput}
         />
         <View style={styles.buttons}>
           <Button
@@ -60,7 +60,7 @@ export default class App extends React.Component {
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
         )}
-        {this.state.search == '' || this.state.images.length == 0 ? (
+        {this.state.search === '' || this.state.images.length === 0 ? (
           <View style={styles.activityIndator}>
             <Text style={styles.message}>No Results were found 🙄</Text>
           </View>
@@ -69,15 +69,27 @@ export default class App extends React.Component {
             key={1}
             data={this.state.images}
             numColumns={3}
-            contentContainerStyle={{ alignItems: 'center' }}
-            renderItem={({ item }) => <GridItem navigation={this.props.navigation} imgObj={item} />}
+            contentContainerStyle={styles.flatListStyle}
+            renderItem={({ item }) => (
+              <ImageItem
+                isGridItem={this.state.gridView}
+                navigation={this.props.navigation}
+                imgObj={item}
+              />
+            )}
             keyExtractor={(item) => item.id}
           />
         ) : (
           <FlatList
             key={2}
             data={this.state.images}
-            renderItem={({ item }) => <ListItem navigation={this.props.navigation} imgObj={item} />}
+            renderItem={({ item }) => (
+              <ImageItem
+                isGridItem={this.state.gridView}
+                navigation={this.props.navigation}
+                imgObj={item}
+              />
+            )}
             keyExtractor={(item) => item.id}
           />
         )}
@@ -85,6 +97,11 @@ export default class App extends React.Component {
     )
   }
 }
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.object
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -101,5 +118,16 @@ const styles = StyleSheet.create({
   buttons: {
     justifyContent: 'space-around',
     flexDirection: 'row'
+  },
+  flatListStyle: {
+    alignItems: 'center'
+  },
+  searchBarContainer: {
+    backgroundColor: '#DCDDDD'
+  },
+  searchBarInput: {
+    backgroundColor: '#FFFFFF'
   }
 })
+
+export default HomeScreen

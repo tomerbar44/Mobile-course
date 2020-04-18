@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { StyleSheet, View, Image, AsyncStorage } from 'react-native'
 import { Icon } from 'react-native-elements'
+import PropTypes from 'prop-types'
 
-export default class BigImgScreen extends React.Component {
+class BigImgScreen extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -19,7 +20,7 @@ export default class BigImgScreen extends React.Component {
       console.error(error)
     }
   }
-  storeData = async () => {
+  async storeData() {
     try {
       await AsyncStorage.setItem(
         this.props.route.params.imgObj.id.toString(),
@@ -40,7 +41,7 @@ export default class BigImgScreen extends React.Component {
             name="heart"
             color="#00aced"
             type="font-awesome"
-            containerStyle={{ alignItems: 'center', paddingBottom: 50 }}
+            containerStyle={styles.iconStyle}
             onPress={() => {
               this.storeData()
             }}
@@ -50,6 +51,11 @@ export default class BigImgScreen extends React.Component {
     )
   }
 }
+
+BigImgScreen.propTypes = {
+  route: PropTypes.object
+}
+
 const styles = StyleSheet.create({
   img: {
     flex: 1,
@@ -60,5 +66,11 @@ const styles = StyleSheet.create({
   containter: {
     flex: 1,
     backgroundColor: '#FFFF'
+  },
+  iconStyle: {
+    alignItems: 'center',
+    paddingBottom: 50
   }
 })
+
+export default BigImgScreen

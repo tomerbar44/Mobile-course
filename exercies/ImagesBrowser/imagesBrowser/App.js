@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements'
 import HomeScreen from './components/HomeScreen'
 import BigImgScreen from './components/BigImgScreen'
 import FavoriteScreen from './components/FavoriteScreen'
+import { StyleSheet } from 'react-native'
 
 const Stack = createStackNavigator()
 function App() {
@@ -30,7 +31,7 @@ function App() {
                 color="#00aced"
                 type="font-awesome"
                 size={20}
-                containerStyle={{ paddingBottom: 5, paddingRight: 5 }}
+                containerStyle={styles.iconStyle}
                 onPress={() => navigation.navigate('FavoriteScreen')}
               />
             ),
@@ -71,4 +72,12 @@ function App() {
     </NavigationContainer>
   )
 }
+
+const styles = StyleSheet.create({
+  iconStyle: {
+    paddingBottom: 5,
+    paddingRight: 5
+  }
+})
+
 export default App

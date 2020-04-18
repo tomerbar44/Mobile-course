@@ -8,10 +8,10 @@ import {
   SafeAreaView,
   AsyncStorage
 } from 'react-native'
+import PropTypes from 'prop-types'
+import ImageItem from './ImageItem'
 
-import GridItem from './GridItem'
-
-export default class FavoriteScreen extends React.Component {
+class FavoriteScreen extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -22,9 +22,10 @@ export default class FavoriteScreen extends React.Component {
   componentDidMount() {
     AsyncStorage.getAllKeys((_err, keys) => {
       AsyncStorage.multiGet(keys, (_err, stores) => {
-        stores.map((_result, i, store) => {
+        stores.map((result, i, store) => {
           const value = store[i][1]
           this.state.images.push(JSON.parse(value))
+          return result
         })
         this.setState({ isLoading: false })
       })
@@ -48,9 +49,9 @@ export default class FavoriteScreen extends React.Component {
               key={1}
               data={this.state.images}
               numColumns={3}
-              contentContainerStyle={{ alignItems: 'center' }}
+              contentContainerStyle={styles.flatListStyle}
               renderItem={({ item }) => (
-                <GridItem navigation={this.props.navigation} imgObj={item} />
+                <ImageItem isGridItem navigation={this.props.navigation} imgObj={item} />
               )}
               keyExtractor={(item) => item.id}
             />
@@ -60,6 +61,11 @@ export default class FavoriteScreen extends React.Component {
     )
   }
 }
+
+FavoriteScreen.propTypes = {
+  navigation: PropTypes.object
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -72,5 +78,10 @@ const styles = StyleSheet.create({
   messageContainer: {
     flex: 1,
     justifyContent: 'center'
+  },
+  flatListStyle: {
+    alignItems: 'center'
   }
 })
+
+export default FavoriteScreen
