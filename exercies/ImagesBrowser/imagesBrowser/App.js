@@ -24,6 +24,7 @@ function App() {
               fontSize: 28,
               fontWeight: 'normal'
             },
+            // eslint-disable-next-line react/display-name
             headerRight: () => (
               <Icon
                 raised

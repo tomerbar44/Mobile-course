@@ -16,7 +16,7 @@ class HomeScreen extends React.Component {
       listButton: 'grey'
     }
   }
-  updateSearch = (search) => {
+  handleChange(search) {
     this.setState({ search, isLoading: true })
     const url = `https://pixabay.com/api/?key=16010070-61ae78d69d027ee701c67fec8&q=${search}&image_type=photo&pretty=true`
     fetch(url)
@@ -33,7 +33,7 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <SearchBar
           placeholder="Search"
-          onChangeText={this.updateSearch}
+          onChangeText={this.handleChange.bind(this)}
           value={this.state.search}
           lightTheme
           containerStyle={styles.searchBarContainer}
