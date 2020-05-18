@@ -22,7 +22,7 @@ const RecentSearches = ({ route }) => {
                 {item}
               </Text>
             </View>
-          );
+          )
         }}
         ListEmptyComponent={() => (
           <View>
